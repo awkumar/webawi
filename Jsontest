@@ -1,0 +1,20 @@
+{
+    "name": "{{ credential.name }}",
+    "description": "{{ credential.description | default('') }}",
+    "organization": {{ org_id }},
+    "user": null,
+    "team": null,
+    "credential_type": {{ credential_type_id }},
+    "inputs": {
+    {% if credential.credential_type == "Network" %}
+        "username": "{{ credential.username }}",
+        "password": "{{ credential.password }}"
+    {% endif %}
+    {% if credential.credential_type == "Source Control" %}
+        "username": "{{ credential.username }}",
+        "ssh_key_data": "{{ credential.ssh_key_data | trim }}",
+        "ssh_key_unlock": "{{ credential.ssh_key_unlock | trim }}"
+    {% endif %}
+    }
+
+
